@@ -1,5 +1,13 @@
 public class Frappuccino implements IItem{
     private String frappuccinoName;
+    private int frappuccinoPrice;
+    private String frappuccinoSize;
+
+    public Frappuccino(String frappuccinoName, int frappuccinoPrice, String frappuccinoSize) {
+        this.frappuccinoName = frappuccinoName;
+        this.frappuccinoPrice = frappuccinoPrice;
+        this.frappuccinoSize = frappuccinoSize;
+    }
 
     private String frappuccinoSize(){
         return null;
@@ -7,7 +15,7 @@ public class Frappuccino implements IItem{
 
     @Override
     public String itemName() {
-        return null;
+        return frappuccinoName;
     }
 
     @Override
@@ -17,7 +25,7 @@ public class Frappuccino implements IItem{
 
     @Override
     public int itemPrice() {
-        return 0;
+        return frappuccinoPrice;
     }
 
     public String toString(){

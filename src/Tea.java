@@ -1,6 +1,15 @@
 public class Tea implements IItem{
 
     private String teaName;
+    private int teaPrice;
+    private String teaSize;
+
+    public Tea(String teaName, int teaPrice, String teaSize) {
+        this.teaName = teaName;
+        this.teaPrice = teaPrice;
+        this.teaSize = teaSize;
+    }
+
     private String teaSize(){
         return null;
     }
@@ -8,7 +17,7 @@ public class Tea implements IItem{
 
     @Override
     public String itemName() {
-        return null;
+        return teaName;
     }
 
     @Override
@@ -18,7 +27,7 @@ public class Tea implements IItem{
 
     @Override
     public int itemPrice() {
-        return 0;
+        return teaPrice;
     }
 
     public String toString(){

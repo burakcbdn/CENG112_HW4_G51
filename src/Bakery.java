@@ -1,10 +1,17 @@
 public class Bakery implements IItem{
     private String bakeryName;
+    private int bakeryPrice;
     private int calories;
+
+    public Bakery(String bakeryName, int bakeryPrice, int calories) {
+        this.bakeryName = bakeryName;
+        this.bakeryPrice = bakeryPrice;
+        this.calories = calories;
+    }
 
     @Override
     public String itemName() {
-        return null;
+        return bakeryName;
     }
 
     @Override
@@ -14,7 +21,7 @@ public class Bakery implements IItem{
 
     @Override
     public int itemPrice() {
-        return 0;
+        return bakeryPrice;
     }
 
     public String toString(){
