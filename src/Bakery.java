@@ -16,7 +16,7 @@ public class Bakery implements IItem{
 
     @Override
     public String itemType() {
-        return null;
+        return "Bakery";
     }
 
     @Override

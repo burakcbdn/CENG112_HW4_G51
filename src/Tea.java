@@ -22,7 +22,7 @@ public class Tea implements IItem{
 
     @Override
     public String itemType() {
-        return null;
+        return "Tea";
     }
 
     @Override

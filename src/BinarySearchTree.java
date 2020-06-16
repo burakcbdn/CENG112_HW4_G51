@@ -1,4 +1,8 @@
+
+import javax.sound.midi.Soundbank;
+import java.util.ArrayList;
 import java.util.Iterator;
+
 
 public class BinarySearchTree implements BSTInterface<IItem> {
 
@@ -144,16 +148,91 @@ public class BinarySearchTree implements BSTInterface<IItem> {
         return null;
     }
 
-    public void show(){
+    public void output() {
 
-        display(root);
+        output(root);
+        ArrayList<IItem> allItemsDescending = reverse(allItemsAscending);
+        ArrayList<IItem> coffeeItemsDescending = reverse(coffeeItemsAscending);
+        ArrayList<IItem> teaItemsDescending = reverse(teaItemsAscending);
+        ArrayList<IItem> frappuccinoItemsDescending = reverse(frappuccinoItemsAscending);
+        ArrayList<IItem> bakeryItemsDescending = reverse(bakeryItemsAscending);
+        IItem minCoffee = coffeeItemsDescending.get(coffeeItemsDescending.size()-1);
+        IItem maxCoffee = coffeeItemsDescending.get(0);
+        IItem minTea = teaItemsDescending.get(teaItemsDescending.size()-1);
+        IItem maxTea = teaItemsDescending.get(0);
+        IItem minBakery = bakeryItemsDescending.get(bakeryItemsDescending.size()-1);
+        IItem maxBakery = bakeryItemsDescending.get(0);
+
+        System.out.println("Cheapest Coffee in the menu: " +minCoffee.itemName() + " - Price: " +minCoffee.itemPrice() + "$" );
+        System.out.println("Most Expensive Coffee in the menu: " +maxCoffee.itemName() + " - Price: " +maxCoffee.itemPrice() + "$" );
+        System.out.println("Cheapest Tea in the menu: " +minTea.itemName() + " - Price: " +minTea.itemPrice() + "$" );
+        System.out.println("Most Expensive Tea in the menu: " +maxTea.itemName() + " - Price: " +maxTea.itemPrice() + "$" );
+        System.out.println("Cheapest Bakery in the menu: " +minBakery.itemName() + " - Price: " +minBakery.itemPrice() + "$" );
+        System.out.println("Most Expensive Bakery in the menu: " +maxBakery.itemName() + " - Price: " +maxBakery.itemPrice() + "$" );
+        System.out.println("======================================================================");
+        System.out.println("All Items In Descending Order In Terms of Price");
+        for (IItem item : allItemsDescending){
+            System.out.println(" -" + item.itemName() + " - " + item.itemPrice() +"$");
+        }
+        System.out.println("======================================================================");
+        System.out.println("All Items in Ascending Order In Terms of Price");
+        for (IItem item : allItemsAscending){
+            System.out.println(" -" + item.itemName() + " - " + item.itemPrice() +"$");
+        }
+        System.out.println("======================================================================");
+        System.out.println("All Coffees in Descending Order in Terms of The Price.");
+        for (IItem item : coffeeItemsDescending){
+            System.out.println(" -" + item.itemName() + " - " + item.itemPrice() +"$");
+        }
+        System.out.println("======================================================================");
+        System.out.println("All Coffees in Ascending Order in Terms of The Price.");
+        for (IItem item : coffeeItemsAscending){
+            System.out.println(" -" + item.itemName() + " - " + item.itemPrice() +"$");
+        }
+        System.out.println("======================================================================");
+        System.out.println("All Teas in Descending Order in Terms of The Price.");
+        for (IItem item : teaItemsDescending){
+            System.out.println(" -" + item.itemName() + " - " + item.itemPrice() +"$");
+        }
     }
 
-    public void display(BinaryNode<IItem> root){
-        if(root!=null){
-            display(root.getLeft());
-            System.out.print(" " + root.getData().itemPrice());
-            display(root.getRight());
+    ArrayList<IItem> allItemsAscending = new ArrayList<IItem>();
+    ArrayList<IItem> coffeeItemsAscending = new ArrayList<IItem>();
+    ArrayList<IItem> teaItemsAscending = new ArrayList<IItem>();
+    ArrayList<IItem> frappuccinoItemsAscending = new ArrayList<IItem>();
+    ArrayList<IItem> bakeryItemsAscending = new ArrayList<IItem>();
+
+    public ArrayList<IItem> reverse(ArrayList<IItem> arrayList) {
+        // Arraylist for storing reversed elements
+        ArrayList<IItem> revArrayList = new ArrayList<IItem>();
+        for (int i = arrayList.size() - 1; i >= 0; i--) {
+            // Append the elements in reverse order
+            revArrayList.add(arrayList.get(i));
+        }
+        // Return the reversed arraylist
+        return revArrayList;
+    }
+
+    private void output(BinaryNode<IItem> root) {
+        if (root != null) {
+            IItem item = root.getData();
+            output(root.getLeft());
+            allItemsAscending.add(item);
+            switch (item.itemType()) {
+                case "Coffee":
+                    coffeeItemsAscending.add(item);
+                    break;
+                case "Tea":
+                    teaItemsAscending.add(item);
+                    break;
+                case "Frappuccino":
+                    frappuccinoItemsAscending.add(item);
+                    break;
+                case "Bakery":
+                    bakeryItemsAscending.add(item);
+                    break;
+            }
+            output(root.getRight());
         }
     }
 

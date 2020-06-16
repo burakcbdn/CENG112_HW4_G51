@@ -20,7 +20,7 @@ public class Frappuccino implements IItem{
 
     @Override
     public String itemType() {
-        return null;
+        return "Frappuccino";
     }
 
     @Override

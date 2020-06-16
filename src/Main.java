@@ -53,7 +53,7 @@ public class Main {
 
                 }
             }
-            binarySearchTree.show();
+            binarySearchTree.output();
 
 
         } catch (IOException e) {
