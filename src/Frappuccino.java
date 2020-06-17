@@ -28,6 +28,16 @@ public class Frappuccino implements IItem{
         return frappuccinoPrice;
     }
 
+    @Override
+    public int getCalories() {
+        return 0;
+    }
+
+    @Override
+    public String getSize() {
+        return frappuccinoSize;
+    }
+
     public String toString(){
         return null;
     }

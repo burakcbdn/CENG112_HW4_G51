@@ -30,6 +30,16 @@ public class Tea implements IItem{
         return teaPrice;
     }
 
+    @Override
+    public int getCalories() {
+        return 0;
+    }
+
+    @Override
+    public String getSize() {
+        return teaSize;
+    }
+
     public String toString(){
         return null;
     }

@@ -24,6 +24,16 @@ public class Bakery implements IItem{
         return bakeryPrice;
     }
 
+    @Override
+    public int getCalories() {
+        return calories;
+    }
+
+    @Override
+    public String getSize() {
+        return null;
+    }
+
     public String toString(){
         return null;
     }

@@ -1,7 +1,7 @@
 
-import javax.sound.midi.Soundbank;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Scanner;
 
 
 public class BinarySearchTree implements BSTInterface<IItem> {
@@ -150,58 +150,123 @@ public class BinarySearchTree implements BSTInterface<IItem> {
 
     public void output() {
 
-        output(root);
+        Scanner scanner = new Scanner(System.in);
+
+        //Arranges the requirements for the output.
+        arrangeOutput(root);
+
+        //Making Descending Lists for items.
         ArrayList<IItem> allItemsDescending = reverse(allItemsAscending);
         ArrayList<IItem> coffeeItemsDescending = reverse(coffeeItemsAscending);
         ArrayList<IItem> teaItemsDescending = reverse(teaItemsAscending);
         ArrayList<IItem> frappuccinoItemsDescending = reverse(frappuccinoItemsAscending);
         ArrayList<IItem> bakeryItemsDescending = reverse(bakeryItemsAscending);
-        IItem minCoffee = coffeeItemsDescending.get(coffeeItemsDescending.size()-1);
+
+        //Taking the mins and maxs of items.
+        IItem minCoffee = coffeeItemsDescending.get(coffeeItemsDescending.size() - 1);
         IItem maxCoffee = coffeeItemsDescending.get(0);
-        IItem minTea = teaItemsDescending.get(teaItemsDescending.size()-1);
+        IItem minTea = teaItemsDescending.get(teaItemsDescending.size() - 1);
         IItem maxTea = teaItemsDescending.get(0);
-        IItem minBakery = bakeryItemsDescending.get(bakeryItemsDescending.size()-1);
+        IItem minBakery = bakeryItemsDescending.get(bakeryItemsDescending.size() - 1);
         IItem maxBakery = bakeryItemsDescending.get(0);
 
-        System.out.println("Cheapest Coffee in the menu: " +minCoffee.itemName() + " - Price: " +minCoffee.itemPrice() + "$" );
-        System.out.println("Most Expensive Coffee in the menu: " +maxCoffee.itemName() + " - Price: " +maxCoffee.itemPrice() + "$" );
-        System.out.println("Cheapest Tea in the menu: " +minTea.itemName() + " - Price: " +minTea.itemPrice() + "$" );
-        System.out.println("Most Expensive Tea in the menu: " +maxTea.itemName() + " - Price: " +maxTea.itemPrice() + "$" );
-        System.out.println("Cheapest Bakery in the menu: " +minBakery.itemName() + " - Price: " +minBakery.itemPrice() + "$" );
-        System.out.println("Most Expensive Bakery in the menu: " +maxBakery.itemName() + " - Price: " +maxBakery.itemPrice() + "$" );
+        //Printing the output
+        System.out.println("Cheapest Coffee in the menu: " + minCoffee.itemName() + " - Price: " + minCoffee.itemPrice() + "$");
+        System.out.println("Most Expensive Coffee in the menu: " + maxCoffee.itemName() + " - Price: " + maxCoffee.itemPrice() + "$");
+        System.out.println("Cheapest Tea in the menu: " + minTea.itemName() + " - Price: " + minTea.itemPrice() + "$");
+        System.out.println("Most Expensive Tea in the menu: " + maxTea.itemName() + " - Price: " + maxTea.itemPrice() + "$");
+        System.out.println("Cheapest Bakery in the menu: " + minBakery.itemName() + " - Price: " + minBakery.itemPrice() + "$");
+        System.out.println("Most Expensive Bakery in the menu: " + maxBakery.itemName() + " - Price: " + maxBakery.itemPrice() + "$");
         System.out.println("======================================================================");
         System.out.println("All Items In Descending Order In Terms of Price");
-        for (IItem item : allItemsDescending){
-            System.out.println(" -" + item.itemName() + " - " + item.itemPrice() +"$");
+        for (IItem item : allItemsDescending) {
+            System.out.println(" -" + item.itemName() + " - " + item.itemPrice() + "$");
         }
         System.out.println("======================================================================");
         System.out.println("All Items in Ascending Order In Terms of Price");
-        for (IItem item : allItemsAscending){
-            System.out.println(" -" + item.itemName() + " - " + item.itemPrice() +"$");
+        for (IItem item : allItemsAscending) {
+            System.out.println(" -" + item.itemName() + " - " + item.itemPrice() + "$");
         }
         System.out.println("======================================================================");
         System.out.println("All Coffees in Descending Order in Terms of The Price.");
-        for (IItem item : coffeeItemsDescending){
-            System.out.println(" -" + item.itemName() + " - " + item.itemPrice() +"$");
+        for (IItem item : coffeeItemsDescending) {
+            System.out.println(" -" + item.itemName() + " - " + item.getSize() + " - " + item.itemPrice() + "$");
         }
         System.out.println("======================================================================");
         System.out.println("All Coffees in Ascending Order in Terms of The Price.");
-        for (IItem item : coffeeItemsAscending){
-            System.out.println(" -" + item.itemName() + " - " + item.itemPrice() +"$");
+        for (IItem item : coffeeItemsAscending) {
+            System.out.println(" -" + item.itemName() + " - " + item.getSize() + " - " + item.itemPrice() + "$");
         }
         System.out.println("======================================================================");
         System.out.println("All Teas in Descending Order in Terms of The Price.");
-        for (IItem item : teaItemsDescending){
-            System.out.println(" -" + item.itemName() + " - " + item.itemPrice() +"$");
+        for (IItem item : teaItemsDescending) {
+            System.out.println(" -" + item.itemName() + " - " + item.getSize() + " - " + item.itemPrice() + "$");
         }
+        System.out.println("======================================================================");
+        System.out.println("Enter price for all items: ");
+        int priceForAll = scanner.nextInt();
+        System.out.println("======================================================================");
+        System.out.println("All Items Whose Prices Are Less Than or Equal to The Amount You Entered.");
+        for (IItem item : allItemsAscending) {
+            if (item.itemPrice() <= priceForAll) {
+                System.out.println(" -" + item.itemName() + " - " + item.itemPrice() + "$");
+            }
+        }
+        System.out.println("======================================================================");
+        System.out.println("All Items Whose Prices Are Greater Than The Amount You Entered.");
+        for (IItem item : allItemsAscending) {
+            if (!(item.itemPrice() <= priceForAll)) {
+                System.out.println(" -" + item.itemName() + " - " + item.itemPrice() + "$");
+            }
+        }
+        System.out.println("======================================================================");
+        System.out.println("Enter calorie for bakeries: ");
+        int calories = scanner.nextInt();
+        System.out.println("======================================================================");
+        System.out.println("All Bakeries Whose Calorie is Less Than or Equal to the Amount You Entered.");
+        for (IItem item : bakeryItemsAscending) {
+            if (item.getCalories() <= calories) {
+                System.out.println(" -" + item.itemName() + " - " + item.getCalories() + " Calories" + " - " + item.itemPrice() + "$");
+            }
+        }
+        System.out.println("======================================================================");
+        System.out.println("All Bakeries Whose Calorie is Greater Than the Amount You Entered.");
+        for (IItem item : bakeryItemsAscending) {
+            if (!(item.getCalories() <= calories)) {
+                System.out.println(" -" + item.itemName() + " - " + item.getCalories() + " Calories" + " - " + item.itemPrice() + "$");
+            }
+        }
+        System.out.println("======================================================================");
+        System.out.println("Enter Size For Coffee: ");
+        String coffeeSize = scanner.next();
+        System.out.println("======================================================================");
+        System.out.println("All Coffees in Descending Order Which Size is Equal to the Size You Entered.");
+        for (IItem item : coffeeItemsDescending) {
+            if (coffeeSize.equals(item.getSize())) {
+                System.out.println(" -" + item.itemName() + " - " + item.getSize() + " - " + item.itemPrice() + "$");
+            }
+        }
+        System.out.println("======================================================================");
+        System.out.println("Enter Size For Tea: ");
+        String teaSize = scanner.next();
+        System.out.println("======================================================================");
+        System.out.println("All Teas in Descending Order Which Size is Equal to the Size You Entered.");
+        for (IItem item : teaItemsDescending) {
+            if (teaSize.equals(item.getSize())) {
+                System.out.println(" -" + item.itemName() + " - " + item.getSize() + " - " + item.itemPrice() + "$");
+            }
+        }
+
     }
 
+    //Lists for items. (Ascending Order)
     ArrayList<IItem> allItemsAscending = new ArrayList<IItem>();
     ArrayList<IItem> coffeeItemsAscending = new ArrayList<IItem>();
     ArrayList<IItem> teaItemsAscending = new ArrayList<IItem>();
     ArrayList<IItem> frappuccinoItemsAscending = new ArrayList<IItem>();
     ArrayList<IItem> bakeryItemsAscending = new ArrayList<IItem>();
 
+    //function for reversing the arraylists.
     public ArrayList<IItem> reverse(ArrayList<IItem> arrayList) {
         // Arraylist for storing reversed elements
         ArrayList<IItem> revArrayList = new ArrayList<IItem>();
@@ -213,10 +278,12 @@ public class BinarySearchTree implements BSTInterface<IItem> {
         return revArrayList;
     }
 
-    private void output(BinaryNode<IItem> root) {
+
+    //Arranges the output
+    private void arrangeOutput(BinaryNode<IItem> root) {
         if (root != null) {
             IItem item = root.getData();
-            output(root.getLeft());
+            arrangeOutput(root.getLeft());
             allItemsAscending.add(item);
             switch (item.itemType()) {
                 case "Coffee":
@@ -232,7 +299,7 @@ public class BinarySearchTree implements BSTInterface<IItem> {
                     bakeryItemsAscending.add(item);
                     break;
             }
-            output(root.getRight());
+            arrangeOutput(root.getRight());
         }
     }
 
